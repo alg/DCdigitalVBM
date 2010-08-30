@@ -25,7 +25,13 @@
       .box.wide
         - form_tag return_path, :multipart => true, :id => "send_form" do
           %h4= tt ".step_1.prompt"
-          = file_field_tag "ballot"
+          = file_field_tag "pdf"
+      - if @ballot && !@ballot.valid?
+        .box.wide
+          Unable to save your ballot:
+          %ul
+            - @ballot.errors.full_messages.each do |m|
+              %li= m
           
 
 #navigation
@@ -38,7 +44,7 @@
     :javascript
       $(function() {
         var docs = $("#continue");
-        $("#ballot").change(function() {
+        $("#pdf").change(function() {
           if (this.value != '') enableLink(docs); else disableLink(docs);
         });
         disableLink(docs);

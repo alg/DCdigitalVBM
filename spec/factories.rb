@@ -25,3 +25,11 @@ Factory.define :registration do |f|
   f.zip               '34001'
   f.voter_id          { Factory.next(:pin) }
 end
+
+Factory.define :ballot do |f|
+  f.association       :registration
+  f.pdf_file_name     "blank_ballot.pdf"
+  f.pdf_content_type  "application/pdf"
+  f.pdf_file_size     91574
+  f.pdf_updated_at    { Time.now }
+end
