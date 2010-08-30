@@ -1,5 +1,5 @@
-AppConfig = YAML.load_file(File.join(RAILS_ROOT, 'config', 'config.yml'))
+AppConfig = YAML.load_file(File.join(Rails.root, 'config', 'config.yml'))
 
 # Override config options by correct environment
-env_options = AppConfig.delete(RAILS_ENV)
+env_options = AppConfig.delete(Rails.env)
 AppConfig.merge!(env_options) unless env_options.nil?

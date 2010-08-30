@@ -1,12 +1,9 @@
-ActionController::Routing::Routes.draw do |map|
-  map.with_options :controller => "pages" do |o|
-    o.front     '/', :action => "front"
-    o.overview  '/overview/:voting_type', :action => "overview", :requirements => { :voting_type => /(physical|digital)/ }
-    o.connect   '/overview',  :action => "overview"
-    o.check_in  '/check_in',  :action => "check_in"
-    o.confirm   '/confirm',   :action => "confirm"
-    o.complete  '/complete',  :action => "complete"
-    o.return    '/return',    :action => "return"
-    o.thanks    '/thanks',    :action => "thanks"
-  end
+Voter::Application.routes.draw do
+  match '/' => 'pages#front', :as => :front
+  match '/overview(/:voting_type)' => 'pages#overview', :as => :overview, :constraints => { :voting_type => /(physical|digital)/ }
+  match '/check_in' => 'pages#check_in',  :as => :check_in
+  match '/confirm'  => 'pages#confirm',   :as => :confirm
+  match '/complete' => 'pages#complete',  :as => :complete
+  match '/return'   => 'pages#return',    :as => :return
+  match '/thanks'   => 'pages#thanks',    :as => :thanks
 end

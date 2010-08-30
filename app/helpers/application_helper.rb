@@ -4,7 +4,7 @@ module ApplicationHelper
   # Typed translation takes the type of the voting process (physical or digital) into
   # account when creating the key
   def tt(key)
-    t tkey(key), :default => t(key)
+    raw t(tkey(key), :default => t(key))
   end
 
   # Generates the voting type dependent translation key
@@ -34,11 +34,11 @@ module ApplicationHelper
       icon_box = content_tag(:div, icon_link ? link_to(image_tag(icon), icon_link, :id => options[:icon_id]) : image_tag(icon), :class => box_class.join(' '))
     end
     
-    content_tag(:div, [
-      content_tag(:div, [
+    content_tag(:div, raw([
+      content_tag(:div, raw([
         content_tag(:h3, tt(".step_#{step}.title")),
         content_tag(:h4, tt(".step_#{step}.instruction") + " " + tip(tt(".step_#{step}.tip"))),
-        tt(".step_#{step}.summary")], :class => "main"),
-      content_tag(:div, [ icon_box ].compact, :class => "icon") ], :class => 'section')
+        tt(".step_#{step}.summary") ].join), :class => "main"),
+      content_tag(:div, raw([ icon_box ].compact.join), :class => "icon") ].join), :class => 'section')
   end
 end

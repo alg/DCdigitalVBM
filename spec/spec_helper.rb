@@ -13,6 +13,6 @@ require 'spec/rails'
 Dir[File.expand_path(File.join(File.dirname(__FILE__), 'support', '**', '*.rb'))].each {|f| require f}
 
 Spec::Runner.configure do |config|
-  config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
+  config.fixture_path = Rails.root + '/spec/fixtures/'
   config.mock_with :mocha
 end

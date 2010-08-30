@@ -23,7 +23,11 @@ class PagesController < ApplicationController
   end
   
   def return
-    redirect_to thanks_url if request.post?
+    if request.post?
+      redirect_to thanks_url
+    else
+      render :return
+    end
   end
   
   def thanks
