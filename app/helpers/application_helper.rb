@@ -14,7 +14,7 @@ module ApplicationHelper
   
   # Generates ul-li list of pipe-separated steps stored in the given key
   def pipe_list(items)
-    content_tag(:ul, items.split('|').map { |l| content_tag(:li, l) })
+    content_tag(:ul, raw(items.split('|').map { |l| content_tag(:li, l) }.join))
   end
   
   # Displays a standard tip

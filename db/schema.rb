@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100830122003) do
+ActiveRecord::Schema.define(:version => 20100830122801) do
+
+  create_table "ballot_styles", :force => true do |t|
+    t.integer  "precinct_split_id", :null => false
+    t.string   "pdf_file_name"
+    t.string   "pdf_content_type"
+    t.integer  "pdf_file_size"
+    t.datetime "pdf_updated_at"
+  end
+
+  add_index "ballot_styles", ["precinct_split_id"], :name => "index_ballot_styles_on_precinct_split_id", :unique => true
 
   create_table "precinct_splits", :force => true do |t|
     t.integer "precinct_id"
