@@ -31,6 +31,7 @@ GEM
     activesupport (3.0.0)
     arel (1.0.1)
       activesupport (~> 3.0.0)
+    autotest (4.3.2)
     builder (2.1.2)
     compass (0.10.5)
       haml (>= 3.0.4)
@@ -110,6 +111,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
+  autotest
   compass
   compass-colors
   factory_girl_rails

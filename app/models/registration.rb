@@ -2,10 +2,11 @@ require 'digest/sha1'
 
 class Registration < ActiveRecord::Base
 
-  belongs_to :precinct_split
+  belongs_to  :precinct_split
+  has_one     :ballot
   
-  validates :pin_hash, :presence => true
-  validates :precinct_split_id, :presence => true
+  validates   :pin_hash, :presence => true
+  validates   :precinct_split_id, :presence => true
   
   def self.match(r)
     self.where(:name => r[:name], :pin_hash => Digest::SHA1.hexdigest(r[:pin]), :zip => r[:zip], :voter_id => r[:voter_id]).first
