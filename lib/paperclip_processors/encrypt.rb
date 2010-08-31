@@ -1,5 +1,3 @@
-Rails.logger.info "[paperclip] Encrypt loaded"
-
 module Paperclip
   class Encrypt < Processor
     def initialize(file, options = {}, attachment = nil)
