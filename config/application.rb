@@ -13,7 +13,7 @@ module Voter
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+    # config.autoload_paths += %W( #{config.root}/lib )
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -43,6 +43,13 @@ module Voter
       g.orm	:active_record
       g.template_engine :haml
       g.test_framework :rspec, :fixture => false
+    end
+    
+    # copied from paperclip.rb: due to bundler, this doesn't seem to happen automagically anymore!?!
+    config.after_initialize do
+      Dir.glob(File.join(File.expand_path(Rails.root), "lib", "paperclip_processors", "*.rb")).each do |processor|
+        require processor # PVDB don't rescue LoadError... let it rip!
+      end
     end
   end
 end
